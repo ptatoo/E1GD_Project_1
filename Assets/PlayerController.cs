@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jump = 500.0f;
     Rigidbody2D rb;
     bool isGrounded;
+    int score = 0;
 
 
     void Start()
@@ -43,11 +44,20 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Collectable"))
+        {
+            score++;
+            //collision.gameObject.SetActive(false);
+            Debug.Log("Score: " + score);
+        }
+    }
+
     void OnMove(InputValue value)
     {
         Vector2 v = value.Get<Vector2>();
         movementX = v.x;
         movementY = v.y;
-        Debug.Log("(X,Y): " + movementX + ", " + movementY);
     }
 }
