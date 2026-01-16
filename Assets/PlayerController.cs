@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
         float movementDistanceY = movementY * speed * Time.deltaTime;
         transform.position = new Vector2(transform.position.x + movementDistanceX, transform.position.y + movementDistanceY); 
     }
-
+               
     void OnMove(InputValue value)
     {
         Vector2 v = value.Get<Vector2>();
