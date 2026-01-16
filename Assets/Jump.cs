@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class movement : MonoBehaviour
+public class Jump : MonoBehaviour
 {
+    bool isGrounded;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,5 +13,14 @@ public class movement : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+
     }
 }
