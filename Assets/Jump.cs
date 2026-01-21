@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    bool isGrounded;
+    [SerializeField] PlayerController player;
+    [SerializeField] Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -15,12 +15,20 @@ public class Jump : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
+            if (player.isGrounded == false)
+            {
+                player.numJump = 0;
+            }
+            player.isGrounded = true;
         }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        player.isGrounded = false;
     }
 }
