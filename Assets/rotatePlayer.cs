@@ -8,7 +8,12 @@ public class rotatePlayer : MonoBehaviour
     public Rigidbody2D playerRb;
     void Start()
     {
-        transform.position = new Vector3(playerRb.position.x, playerRb.position.y, 0);
+        resetRotation();
+    }
+
+    public void resetRotation()
+    {
+        transform.rotation = Quaternion.identity;
     }
 
     // Update is called once per frame

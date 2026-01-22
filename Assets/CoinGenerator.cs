@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CoinGenerator : MonoBehaviour
 {
     [SerializeField] GameObject m_coin;
-    Vector3[] positions =
+    Vector3[] position1 =
     {
         new Vector3(-3f, -3, 0),
         new Vector3(3f, -3, 0),
@@ -19,7 +20,18 @@ public class CoinGenerator : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        foreach (Vector3 pos in positions)
+        resetCoins(0);
+    }
+    public void resetCoins(int lvl)
+    {
+        Vector3[] curPos = { };
+        switch (lvl)
+        {
+            case 0:
+                curPos = position1;
+                break;
+        }
+        foreach (Vector3 pos in curPos)
         {
             GameObject clone = Instantiate(m_coin, pos, Quaternion.identity);
             clone.transform.SetParent(transform, true);

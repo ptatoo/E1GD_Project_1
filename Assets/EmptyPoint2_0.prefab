@@ -101,5 +101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newSprite: {fileID: 6139610827258685681, guid: 7ad74bf780fa4834ca7aa13b2ed08dc3, type: 3}
+  oldSprite: {fileID: 3201238671903667554, guid: 48b943f69f0dcfe44825793130768535, type: 3}
   pt_num: 1
   counter: {fileID: 0}

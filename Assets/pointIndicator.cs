@@ -5,6 +5,7 @@ public class pointIndicator : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public Sprite newSprite;
+    public Sprite oldSprite;
     public int pt_num = 11;
     public Counter counter;
 
@@ -19,5 +20,10 @@ public class pointIndicator : MonoBehaviour
     public void ChangeSprite()
     {
         spriteRenderer.sprite = newSprite;
+    }
+
+    public void ResetSprite()
+    {
+        spriteRenderer.sprite = oldSprite;
     }
 }

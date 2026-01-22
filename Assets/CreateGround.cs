@@ -3,7 +3,7 @@ using UnityEngine;
 public class CreateGround : MonoBehaviour
 {
     [SerializeField] GameObject m_Ground;
-    Vector3[] positions =
+    Vector3[] positions1 =
     {
         new Vector3(0, -4, 0),
         new Vector3(-3f, -4, 0),
@@ -28,7 +28,18 @@ public class CreateGround : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        foreach (Vector3 pos in positions)
+        resetGround(0);
+    }
+
+    public void resetGround(int lvl)
+    {
+        Vector3[] curPos = { };
+        switch (lvl) {
+            case 0:
+                curPos = positions1;
+                break;
+        }
+        foreach (Vector3 pos in curPos)
         {
             GameObject clone = Instantiate(m_Ground, pos, Quaternion.identity);
             clone.transform.SetParent(transform, true);

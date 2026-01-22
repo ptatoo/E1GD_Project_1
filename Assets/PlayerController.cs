@@ -12,11 +12,16 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public int numJump = 0;
     public Counter counter;
+    Vector3[] startPos =
+    {
+        new Vector3(0, 0, 0)
+    };
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        resetPlayer(0);
     }
 
     // Update is called once per frame
@@ -44,10 +49,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnMove(InputValue value)
+    public void resetPlayer(int lvl)
     {
-        Vector2 v = value.Get<Vector2>();
-        inputX = v.x;
-        inputY = v.y;
+        rb.linearVelocity = Vector3.zero;
+        rb.position = startPos[lvl];
     }
+
+    //void OnMove(InputValue value)
+    //{
+    //    Vector2 v = value.Get<Vector2>();
+    //    inputX = v.x;
+    //    inputY = v.y;
+    //}
 }
