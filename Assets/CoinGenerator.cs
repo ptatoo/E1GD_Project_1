@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 public class CoinGenerator : MonoBehaviour
 {
     [SerializeField] GameObject m_coin;
+    public Counter counter;
     Vector3[] position1 =
     {
         new Vector3(-3f, -3, 0),
@@ -20,9 +21,31 @@ public class CoinGenerator : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        resetCoins(0);
+        startLevel(0);
     }
-    public void resetCoins(int lvl)
+
+    public void resetLevel(int lvl)
+    {
+        Vector3[] curPos = { };
+        switch (lvl)
+        {
+            case 0:
+                curPos = position1;
+                break;
+        }
+        int i = 0;
+        int curPoints = counter.point;
+        foreach (Vector3 pos in curPos)
+        {
+            if (i < curPoints)
+            {
+                GameObject clone = Instantiate(m_coin, pos, Quaternion.identity);
+                clone.transform.SetParent(transform, true);
+            }
+            i++;
+        }
+    }
+    public void startLevel(int lvl)
     {
         Vector3[] curPos = { };
         switch (lvl)
@@ -33,9 +56,10 @@ public class CoinGenerator : MonoBehaviour
         }
         foreach (Vector3 pos in curPos)
         {
-            GameObject clone = Instantiate(m_coin, pos, Quaternion.identity);
-            clone.transform.SetParent(transform, true);
+                GameObject clone = Instantiate(m_coin, pos, Quaternion.identity);
+                clone.transform.SetParent(transform, true);
         }
+
     }
 
     // Update is called once per frame

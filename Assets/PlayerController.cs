@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        resetPlayer(0);
+        resetLevel(0);
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void resetPlayer(int lvl)
+    public void resetLevel(int lvl)
     {
         rb.linearVelocity = Vector3.zero;
         rb.position = startPos[lvl];

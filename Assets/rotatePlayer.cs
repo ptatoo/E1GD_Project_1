@@ -8,10 +8,10 @@ public class rotatePlayer : MonoBehaviour
     public Rigidbody2D playerRb;
     void Start()
     {
-        resetRotation();
+        resetLevel();
     }
 
-    public void resetRotation()
+    public void resetLevel()
     {
         transform.rotation = Quaternion.identity;
     }

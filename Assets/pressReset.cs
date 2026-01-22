@@ -13,4 +13,9 @@ public class pressReset : MonoBehaviour
     {
         
     }
+
+    void OnClick()
+    {
+        Debug.Log("Clicked on " + gameObject.name);
+    }
 }
