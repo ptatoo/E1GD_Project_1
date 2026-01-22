@@ -5,7 +5,6 @@ public class CoinGenerator : MonoBehaviour
 {
     [SerializeField] GameObject m_coin;
     public Counter counter;
-    public int maxPoints = 10;
     Vector3[] position1 =
     {
         new Vector3(-3f, -3, 0),
@@ -19,14 +18,10 @@ public class CoinGenerator : MonoBehaviour
         new Vector3(42f, 12, 0),
         new Vector3(51f, -9, 0),
     };
-
-    [SerializeField] detectPlayer[] pts;
-    public GameObject[] coins;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        resetLevel(0);
+        startLevel(0);
     }
 
     public void resetLevel(int lvl)
@@ -38,14 +33,31 @@ public class CoinGenerator : MonoBehaviour
                 curPos = position1;
                 break;
         }
-
-        for (int i = 0; i < maxPoints; i++) {
-            coins[i].gameObject.SetActive(true);
-            coins[i].gameObject.transform.position = curPos[i];
-        }
-        for (int i = maxPoints; i < 10; i++)
+        int i = 0;
+        int curPoints = counter.point;
+        foreach (Vector3 pos in curPos)
         {
-            coins[i].gameObject.SetActive(true);
+            if (i < curPoints)
+            {
+                GameObject clone = Instantiate(m_coin, pos, Quaternion.identity);
+                clone.transform.SetParent(transform, true);
+            }
+            i++;
+        }
+    }
+    public void startLevel(int lvl)
+    {
+        Vector3[] curPos = { };
+        switch (lvl)
+        {
+            case 0:
+                curPos = position1;
+                break;
+        }
+        foreach (Vector3 pos in curPos)
+        {
+                GameObject clone = Instantiate(m_coin, pos, Quaternion.identity);
+                clone.transform.SetParent(transform, true);
         }
 
     }

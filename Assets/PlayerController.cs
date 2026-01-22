@@ -6,16 +6,12 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float inputX;
     public float inputY;
-    public bool isGrounded;
-    public int numJump = 0;
     [SerializeField] float speed = 5.0f;
     [SerializeField] float jump = 500.0f;
-
     private Rigidbody2D rb;
-    private bool stopPlayer = false;
-
+    public bool isGrounded;
+    public int numJump = 0;
     public Counter counter;
-    public LvlController controller;
     Vector3[] startPos =
     {
         new Vector3(0, 0, 0)
@@ -35,28 +31,21 @@ public class PlayerController : MonoBehaviour
         //float movementDistanceY = movementY * speed * Time.deltaTime;
         //transform.position = new Vector2(transform.position.x + movementDistanceX, transform.position.y + movementDistanceY); 
         rb.linearVelocity = new Vector2(inputX * speed, rb.linearVelocityY);
-        if (inputY > 0 && numJump == 0 && !stopPlayer)
+        if (inputY > 0 && numJump == 0)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
             rb.AddForce(new Vector2(0, jump));
             numJump = 1;
         }
-        else if (inputY == 0 && numJump == 1 && !isGrounded && !stopPlayer)
+        else if (inputY == 0 && numJump == 1 && !isGrounded)
         {
             numJump = 2;
         }
-        else if (inputY > 0 && numJump == 2 && !isGrounded && !stopPlayer)
+        else if (inputY > 0 && numJump == 2 && !isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
             rb.AddForce(new Vector2(0, jump));
             numJump = 3;
-        }
-        if (rb.position.y < -50)
-        {
-            stopPlayer = true;
-            rb.gravityScale = 0;
-            rb.linearVelocity = new Vector2(0, 0);
-            controller.gameLost();
         }
     }
 
@@ -64,7 +53,12 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = Vector3.zero;
         rb.position = startPos[lvl];
-        stopPlayer = false;
-        rb.gravityScale = 1;
     }
+
+    //void OnMove(InputValue value)
+    //{
+    //    Vector2 v = value.Get<Vector2>();
+    //    inputX = v.x;
+    //    inputY = v.y;
+    //}
 }
