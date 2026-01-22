@@ -9,7 +9,6 @@ public class Counter : MonoBehaviour
     public pointIndicator[] pts;
     void Start()
     {
-        resetLevel(0);
     }
 
     public void resetLevel(int lvl)
