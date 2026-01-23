@@ -21,6 +21,6 @@ public class LvlButtonScript : MonoBehaviour
     public void startGamePlay()
     {
         menuManager.level = buttonText - 1;
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameplayScene");
     }
 }

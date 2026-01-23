@@ -24,6 +24,9 @@ public class pointIndicator : MonoBehaviour
 
     public void ResetSprite()
     {
-        spriteRenderer.sprite = oldSprite;
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sprite = oldSprite;
+        }
     }
 }

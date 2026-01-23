@@ -10,14 +10,14 @@ public class LvlController : MonoBehaviour
     public GameObject youLose;
     public bool gamePause = false;
 
-    private GameObject menuManager;
+    //private GameObject menuManager;
     void Start()
     {
-        menuManager = GameObject.Find("menuManager");
-        if (menuManager != null && menuManager.TryGetComponent<menuManagerScript>(out menuManagerScript menuManagerScriptt))
-        {
-            lvl = menuManagerScriptt.level;
-        }
+        lvl = menuManagerScript.Instance.level;
+        //if (menuManager != null && menuManager.TryGetComponent<menuManagerScript>(out menuManagerScript menuManagerScriptt))
+        //{
+        //    lvl = menuManagerScriptt.level;
+        //}
         broadCastReset();
     }
 
@@ -43,6 +43,7 @@ public class LvlController : MonoBehaviour
         changeLvl.SetActive(false);
         youLose.SetActive(false);
         gameObject.BroadcastMessage("resetLevel", lvl);
+        gameObject.BroadcastMessage("resetCounter", lvl);
         //gameObject.BroadcastMessage("resetGround", lvl);
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.U2D;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,9 +14,12 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool stopPlayer = false;
+    private Animator animator;
+    private SpriteRenderer sprite;
 
     public Counter counter;
     public LvlController controller;
+    public GameObject playerCostume;
     Vector3[] startPos =
     {
         new Vector3(0, 0, 0)
@@ -25,37 +29,66 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = playerCostume.gameObject.GetComponent<Animator>();
+        sprite = playerCostume.gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //float movementDistanceX = movementX * speed * Time.deltaTime;
-        //float movementDistanceY = movementY * speed * Time.deltaTime;
-        //transform.position = new Vector2(transform.position.x + movementDistanceX, transform.position.y + movementDistanceY); 
+        //x velocity
         rb.linearVelocity = new Vector2(inputX * speed, rb.linearVelocityY);
+        if (!Mathf.Approximately(inputX, 0f))
+        {
+            animator.SetBool("running", true);
+            sprite.flipX = inputX < 0;
+        }
+        else animator.SetBool("running", false);
+
+        //first jump
         if (inputY > 0 && numJump == 0 && !stopPlayer)
         {
+            animator.SetBool("jumping", true);
             rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
             rb.AddForce(new Vector2(0, jump));
             numJump = 1;
         }
+
+        //not jumping; can do a second one
         else if (inputY == 0 && numJump == 1 && !isGrounded && !stopPlayer)
         {
             numJump = 2;
         }
+
+        //second jump
         else if (inputY > 0 && numJump == 2 && !isGrounded && !stopPlayer)
         {
+            animator.SetTrigger("doubleJump");
             rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
             rb.AddForce(new Vector2(0, jump));
             numJump = 3;
         }
+
+        //falling out into the void
         if (rb.position.y < -50)
         {
             stopPlayer = true;
             rb.gravityScale = 0;
             rb.linearVelocity = new Vector2(0, 0);
             controller.gameLost();
+        }
+
+        //grounded animation
+        if (isGrounded)
+        {
+            animator.SetBool("grounded", true);
+            animator.SetBool("jumping", false);
+            animator.ResetTrigger("doubleJump");
+        }
+        else
+        {
+            animator.SetBool("grounded", false);
+            animator.SetBool("jumping", true);
         }
     }
 
