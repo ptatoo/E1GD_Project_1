@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class LvlController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] int lvl = 0;
+    private int lvl;
     public GameObject tryAgain;
     public GameObject changeLvl;
     public GameObject youLose;
@@ -13,11 +13,13 @@ public class LvlController : MonoBehaviour
     //private GameObject menuManager;
     void Start()
     {
-        lvl = menuManagerScript.Instance.level;
-        //if (menuManager != null && menuManager.TryGetComponent<menuManagerScript>(out menuManagerScript menuManagerScriptt))
-        //{
-        //    lvl = menuManagerScriptt.level;
-        //}
+        if (menuManagerScript.Instance != null)
+        {
+            Debug.Log("found menuManager");
+            lvl = menuManagerScript.Instance.level;
+        }
+        else lvl = 0;
+        Debug.Log("found menuManager");
         broadCastReset();
     }
 
@@ -42,8 +44,8 @@ public class LvlController : MonoBehaviour
         tryAgain.SetActive(false);
         changeLvl.SetActive(false);
         youLose.SetActive(false);
-        gameObject.BroadcastMessage("resetLevel", lvl);
-        gameObject.BroadcastMessage("resetCounter", lvl);
-        //gameObject.BroadcastMessage("resetGround", lvl);
+        gameObject.BroadcastMessage("resetLevel", menuManagerScript.Instance.level);
+        gameObject.BroadcastMessage("resetCounter", menuManagerScript.Instance.level);
+        gameObject.BroadcastMessage("resetGround", menuManagerScript.Instance.level);
     }
 }

@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
     public void resetLevel(int lvl)
     {
         rb.linearVelocity = Vector3.zero;
-        rb.position = startPos[lvl];
+        rb.position = startPos[0];
         stopPlayer = false;
         rb.gravityScale = 1;
     }
