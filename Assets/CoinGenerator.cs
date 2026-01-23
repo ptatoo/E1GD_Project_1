@@ -8,25 +8,23 @@ public class CoinGenerator : MonoBehaviour
     public int maxPoints = 10;
     Vector3[] position1 =
     {
-        new Vector3(-3f, -3, 0),
-        new Vector3(3f, -3, 0),
-        new Vector3(15f, 3, 0),
-        new Vector3(21f, 12, 0),
-        new Vector3(24f, 18, 0),
-        new Vector3(30f, 12, 0),
-        new Vector3(27f, 9f, 0),
-        new Vector3(39f, 6f, 0),
-        new Vector3(42f, 12, 0),
-        new Vector3(51f, -9, 0),
+        new Vector3(-2f, -2, 0),
+        new Vector3(5f, -2, 0),
+        new Vector3(17.5f, 4, 0),
+        new Vector3(25.5f, 13, 0),
+        new Vector3(29.5f, 19, 0),
+        new Vector3(35.5f, 13, 0),
+        new Vector3(32.5f, 10f, 0),
+        new Vector3(44.5f, 7f, 0),
+        new Vector3(47.5f, 13, 0),
+        new Vector3(59.5f, -8, 0),
     };
 
-    [SerializeField] detectPlayer[] pts;
     public GameObject[] coins;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        resetLevel(0);
     }
 
     public void resetLevel(int lvl)
@@ -45,7 +43,7 @@ public class CoinGenerator : MonoBehaviour
         }
         for (int i = maxPoints; i < 10; i++)
         {
-            coins[i].gameObject.SetActive(true);
+            coins[i].gameObject.SetActive(false);
         }
 
     }

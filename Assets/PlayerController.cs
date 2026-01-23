@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        resetLevel(0);
     }
 
     // Update is called once per frame

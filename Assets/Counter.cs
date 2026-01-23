@@ -11,7 +11,7 @@ public class Counter : MonoBehaviour
     {
     }
 
-    public void resetLevel(int lvl)
+    public void resetCounter(int lvl)
     {
         point = 0;
         foreach (pointIndicator pt in pts)

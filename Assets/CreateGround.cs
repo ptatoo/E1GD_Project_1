@@ -28,7 +28,6 @@ public class CreateGround : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        resetGround(0);
     }
 
     public void resetGround(int lvl)
