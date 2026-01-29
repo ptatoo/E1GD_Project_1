@@ -8,6 +8,8 @@ public class LvlController : MonoBehaviour
     public GameObject tryAgain;
     public GameObject changeLvl;
     public GameObject youLose;
+    public GameObject youWin;
+    public PlayerController player;
     public bool gamePause = false;
 
     //private GameObject menuManager;
@@ -31,11 +33,22 @@ public class LvlController : MonoBehaviour
 
     public void gameLost()
     {
+        if (gamePause == false)
+        {
+            gamePause = true;
+            tryAgain.SetActive(true);
+            changeLvl.SetActive(true);
+            youLose.SetActive(true);
+            player.stopPlayer = true;
+        }
+    }
+    public void gameWon()
+    {
         gamePause = true;
         tryAgain.SetActive(true);
         changeLvl.SetActive(true);
-        youLose.SetActive(true);
-
+        youWin.SetActive(true);
+        player.stopPlayer = true;
     }
 
     public void broadCastReset()
@@ -44,6 +57,7 @@ public class LvlController : MonoBehaviour
         tryAgain.SetActive(false);
         changeLvl.SetActive(false);
         youLose.SetActive(false);
+        youWin.SetActive(false);
         gameObject.BroadcastMessage("resetLevel", menuManagerScript.Instance.level);
         gameObject.BroadcastMessage("resetCounter", menuManagerScript.Instance.level);
         gameObject.BroadcastMessage("resetGround", menuManagerScript.Instance.level);

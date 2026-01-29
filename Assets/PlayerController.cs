@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jump = 500.0f;
 
     private Rigidbody2D rb;
-    private bool stopPlayer = false;
+    public bool stopPlayer = false;
     private Animator animator;
     private SpriteRenderer sprite;
 
@@ -37,7 +37,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //x velocity
-        rb.linearVelocity = new Vector2(inputX * speed, rb.linearVelocityY);
+        if (!stopPlayer)
+        {
+            rb.linearVelocity = new Vector2(inputX * speed, rb.linearVelocityY);
+        }
+        else rb.linearVelocity = new Vector2(0, 0);
         if (!Mathf.Approximately(inputX, 0f))
         {
             animator.SetBool("running", true);

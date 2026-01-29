@@ -7,6 +7,7 @@ public class Counter : MonoBehaviour
     public int point = 0;
     public int maxPoints = 10;
     public pointIndicator[] pts;
+    public LvlController controller;
     void Start()
     {
     }
@@ -31,6 +32,9 @@ public class Counter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (point >= maxPoints)
+        {
+            controller.gameWon();
+        }
     }
 }
