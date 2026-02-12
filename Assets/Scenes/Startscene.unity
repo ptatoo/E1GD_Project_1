@@ -991,6 +991,18 @@ PrefabInstance:
       propertyPath: menuManager
       value: 
       objectReference: {fileID: 1429493229}
+    - target: {fileID: 5917464885567633438, guid: caeee163fffc8204f86bb82986e21e6e, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.36477977
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917464885567633438, guid: caeee163fffc8204f86bb82986e21e6e, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.36477977
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917464885567633438, guid: caeee163fffc8204f86bb82986e21e6e, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.36477977
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

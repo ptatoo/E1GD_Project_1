@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public int numJump = 0;
     [SerializeField] float speed = 5.0f;
     [SerializeField] float jump = 500.0f;
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip jumpClip;
 
     private Rigidbody2D rb;
     public bool stopPlayer = false;
@@ -55,6 +57,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("jumping", true);
             rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
             rb.AddForce(new Vector2(0, jump));
+            source.PlayOneShot(jumpClip);
             numJump = 1;
         }
 
@@ -70,6 +73,7 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("doubleJump");
             rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
             rb.AddForce(new Vector2(0, jump));
+            source.PlayOneShot(jumpClip);
             numJump = 3;
         }
 

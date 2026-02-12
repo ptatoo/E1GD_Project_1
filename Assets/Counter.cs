@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 using UnityEngine.UIElements;
 
 public class Counter : MonoBehaviour
@@ -21,12 +22,14 @@ public class Counter : MonoBehaviour
             pt.ResetSprite();
             count++;
         }
+
     }
 
     public void addPt()
     {
         point = point + 1;
         pts[point - 1].ChangeSprite();
+
     }
     
     // Update is called once per frame
